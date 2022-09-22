@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from varauskalenteri.views import etusivu
+
 urlpatterns = [
+    path('varaus/', etusivu),
     path('admin/', admin.site.urls),
 ]
