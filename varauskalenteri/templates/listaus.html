@@ -1,0 +1,10 @@
+<html>
+    Valitse tapahtuma, johon haluat osallistua:
+    <ul>
+        {% for tapahtuma in tapahtumat %}
+            <li>
+                <a href ="{{tapahtuma.id}}">{{tapahtuma}}</a>
+            </li>
+        {%  endfor %}
+    </ul>
+</html>
