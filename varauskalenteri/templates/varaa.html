@@ -2,18 +2,31 @@
     <h1>Varaa tapahtuma</h1>
     <h2>Tapahtuma: {{tapahtuma.otsikko}}</h2>
     <p>
-        {{tapahtuma.alku.date}}
-        klo {{tapahtuma.alku.time}}
-        kesto {{tapahtuma.kesto_tuntia|floatformat}} h
+        {% spaceless %}
+        <span>{{tapahtuma.alku.date}}</span>
+        <span>klo</span>
+        <span>{{tapahtuma.alku.time}}</span>
+        {% if tapahtuma.kesto %}
+        <span>kesto</span>
+        <span>{{tapahtuma.kesto_tuntia|floatformat}} h</span>
+        {% endif%}
+        {% endspaceless %}
     </p>
     <p>{{tapahtuma.kuvaus}}</p>
 
     {% if varattu %}
         Olet varannut paikkasi tapahtumaan!
-    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" value="toiminto" value="peru"/>
+            <input type="submit" value="Peru varaus"/>
+        </form>
+    {% elif tapahtuma.onko_tilaa %}
         <form method="post">
             {% csrf_token %}
             <input type="submit" value="Osallistun!"/>
         </form>
+    {% else %}
+        Harmi, tapahtuma on jo täynnä.
     {% endif %}
 </html>
