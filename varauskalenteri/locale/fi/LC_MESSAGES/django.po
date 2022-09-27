@@ -17,6 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: models.py:28
+
+#: .\models.py:30
 msgid "Visible"
 msgstr "Näkyvissä"
+
+#: .\templates\varaa.html:34
+msgid "Go to Front Page"
+msgstr "Etusivulle"

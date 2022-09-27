@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 from.models import Tapahtuma
 
+
 def tapahtumalistaus(request):
     tapahtumat = Tapahtuma.objects.all()
     context = {
