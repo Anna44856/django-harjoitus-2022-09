@@ -23,5 +23,5 @@ msgid "Visible"
 msgstr "Näkyvissä"
 
 #: .\templates\varaa.html:34
-msgid "Go to Front Page"
-msgstr "Etusivulle"
+msgid "Go to Event List"
+msgstr "Tapahtumalistaukseen"

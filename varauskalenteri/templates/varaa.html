@@ -5,12 +5,12 @@
     <p>
         {% spaceless %}
         <span>{{tapahtuma.alku.date}}</span>
-        <span>klo</span>
+        <span> klo </span>
         <span>{{tapahtuma.alku.time}}</span>
         {% if tapahtuma.kesto %}
-        <span>kesto</span>
-        <span>{{tapahtuma.kesto_tuntia|floatformat}} h</span>
-        {% endif%}
+            <span>, kesto </span>
+            <span>{{tapahtuma.kesto_tuntia|floatformat}} h</span>
+        {% endif %}
         {% endspaceless %}
     </p>
     <p>{{tapahtuma.kuvaus}}</p>
@@ -30,7 +30,10 @@
     {% else %}
         Harmi, tapahtuma on jo täynnä.
     {% endif %}
+
     <p>
-        <a href="{% url 'etusivu' %}">{% translate "Go to Front Page" %}</a>
+        <a href="{% url 'tapahtumalistaus' %}">
+            {% translate "Go to Event List" %}
+        </a>
     </p>
 </html>
