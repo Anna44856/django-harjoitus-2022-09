@@ -40,7 +40,7 @@ class Tapahtuma(models.Model):
         loppu_teksti = f"{loppu:%d.%m.%Y %H:%M}" if loppu else ""
         return f"{self.otsikko} ({alku:%d.%m.%Y %H:%M} -- {loppu_teksti})"
 
-    def kesto(self) -> datetime.timedelta |None :
+    def kesto(self) -> datetime.timedelta |None:
         if not self.loppu:
             return None
         return self.loppu - self.alku
