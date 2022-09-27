@@ -6,14 +6,12 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 
-
-
-
 class Tapahtuma(models.Model):
     """
     Varattava tapahtuma.
 
     Varaus tapahtuu lisäämällä käyttäjä "osallistujat" - listaan.
+    
     Osallistujien maksimimäärä on määritelty "paikkoja" - kentällä.
     """
     otsikko = models.CharField(max_length=200)
@@ -39,23 +37,25 @@ class Tapahtuma(models.Model):
         loppu = timezone.localtime(self.loppu) if self.loppu else None
         loppu_teksti = f"{loppu:%d.%m.%Y %H:%M}" if loppu else ""
         return f"{self.otsikko} ({alku:%d.%m.%Y %H:%M} -- {loppu_teksti})"
-
-    def kesto(self) -> datetime.timedelta |None:
+    
+    @property
+    def kesto(self) -> datetime.timedelta | None:
         if not self.loppu:
             return None
         return self.loppu - self.alku
 
+    @property
     def kesto_tuntia(self) -> float | None:
-        kesto = self.kesto()
+        kesto = self.kesto
         return kesto.total_seconds() / 3600 if kesto else None
 
     def varaa(self, user):
         """
         Varaa tämä tapahtuma annetulle käyttäjälle.
 
-        Palatuttaa True, jos tapahtuma saatiin varattua annetulle
+        Palauttaa True, jos tapahtuma saatiin varattua annetulle
         käyttäjälle tai jos tapahtuma oli jo varattu annetulle
-        käyttäjälle. Jos tapahtu oli jo täynnä, eikä varaus siis
+        käyttäjälle.  Jos tapahtuma oli jo täynnä, eikä varaus siis
         onnistunut, niin palauttaa False.
         """
         if user in self.osallistujat.all():
@@ -70,10 +70,10 @@ class Tapahtuma(models.Model):
         if not self.onko_varattu(user):
             return
         self.osallistujat.remove(user)
-
+        
     def onko_varattu(self, user):
         """
-        Onko tämä tapahtuma varattu annetulla käyttäjälle?
+        Onko tämä tapahtuma varattu annetulle käyttäjälle?
         """
         return (user in self.osallistujat.all())
 
