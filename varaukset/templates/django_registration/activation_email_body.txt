@@ -1,0 +1,10 @@
+{% load i18n %}
+Hei, {{user.username}}!
+
+Tervetuloa varaussovellukseen!
+
+Aktivoi käyttäjätunnuksesi klikkaamalla allaolevaa linkkiä.
+
+{{scheme}}://{{request.get_host}}{% url 'django_registration_activate' activation_key %}
+
+Aktivointi pitää tehdä {{expiration_days}} päivän kuluessa.

@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Tapahtumien varaussovellus</title>
+</head>
+<body>
+    <h1>Tapahtumien varaus</h1>
+    <ul>
+        <li><a href="{% url 'login' %}">Kirjaudu sisään</a></li>
+        <li>
+            <a href="{% url 'django_registration_register' %}">
+                Rekisteröidy
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'tapahtumalistaus' %}">
+                Selaa ja varaa tapahtumia
+            </a>
+        </li>
+    </ul>
+</body>
+</html>

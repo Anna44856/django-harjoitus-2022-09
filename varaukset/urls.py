@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+import django.contrib.auth.urls
+import django_registration.backends.activation.urls
 
 import varauskalenteri.urls
 
 urlpatterns = [
+    path('tilit/', include(django_registration.backends.activation.urls)),
+    path('tilit/', include(django.contrib.auth.urls)),
     path('varaus/', include(varauskalenteri.urls)),
     path('admin/', admin.site.urls),
 ]
