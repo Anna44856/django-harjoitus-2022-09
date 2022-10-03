@@ -1,10 +1,11 @@
-<html>
-    Valitse tapahtuma, johon haluat osallistua:
-    <ul>
-        {% for tapahtuma in tapahtumat %}
-            <li>
-                <a href="{% url 'varaus' tapahtuma.id %}">{{tapahtuma}}</a>
-            </li>
-        {%  endfor %}
-    </ul>
-</html>
+{% extends "base.html" %}
+{% block content %}
+Valitse tapahtuma, johon haluat osallistua:
+<ul>
+    {% for tapahtuma in tapahtumat %}
+        <li>
+            <a href="{% url 'varaus' tapahtuma.id %}">{{tapahtuma}}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
