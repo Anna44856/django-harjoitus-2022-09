@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>{% block title %}Tapahtumien varaussovellus{% endblock %}</title>
+</head>
+<body>
+    <h1>{% block header %}Tapahtumien varaus{% endblock %}</h1>
+
+    {% block navigation %}
+    <nav>
+        <ul>
+            {% if not user.is_authenticated %}
+            <li><a href="{% url 'login' %}">Kirjaudu sisään</a></li>
+            <li>
+                <a href="{% url 'django_registration_register' %}">
+                    Rekisteröidy
+                </a>
+            </li>
+            {% else %}
+            <li><a href="{% url 'logout' %}">Kirjaudu ulos</a></li>
+            {% endif %}
+        </ul>        
+    </nav>
+    {% endblock %}
+
+    {% block content %}{% endblock %}
+</body>
+</html>
