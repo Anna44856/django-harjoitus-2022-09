@@ -13,7 +13,7 @@
 <body>
     {% block navigation %}
     <nav class="navbar navbar-expand-sm bg-primary">
-        <div class="container-fluid">
+        <div class="container">
             <a class="navbar-brand" href="{% url 'etusivu' %}">Varaukset</a>
             <button class="navbar-toggler" type="button"
              data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -22,7 +22,16 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="{% url 'tapahtumalistaus' %}">Tapahtumat</a>
+                    </li>
+                </ul>
+                {% endif %}
+
+                <ul class="navbar-nav ms-auto">
                     {% if not user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'login' %}">Kirjaudu sisään</a>
